@@ -18,21 +18,25 @@
  *
  * Date: 03 May 2011 22:16:00
  */
-(function ($) {
-    //GLOBAL VARIABLES
-    var isIE6 = ($.browser.msie && $.browser.version < 7);
-    var body = $(document.body);
-    var window = $(window);
-    var jqzoompluging_disabled = false; //disabilita globalmente il plugin
-    $.fn.jqzoom = function (options) {
-        return this.each(function () {
-            var node = this.nodeName.toLowerCase();
-            if (node == 'a') {
-                new jqzoom(this, options);
-            }
-        });
-    };
+(function($){
+   
+        //GLOBAL VARIABLES
+        var isIE6 = ($.browser.msie && $.browser.version < 7);
+        var body = $(document.body);
+        var window = $(window);
+        var jqzoompluging_disabled = false; //disabilita globalmente il plugin
+    
+        $.jqzoom = function (options) {
+            return this.each(function () {
+                var node = this.nodeName.toLowerCase();
+                if (node == 'a') {
+                    new jqzoom(this, options);
+                }
+            });
+        };
+ 
     jqzoom = function (el, options) {
+        $(document.body).alert("jqzoom");
         var api = null;
         api = $(el).data("jqzoom");
         if (api) return api;
@@ -182,7 +186,7 @@
                     }
                     $(this).click(function (e) {
                         if($(this).hasClass('zoomThumbActive')){
-                          return false;
+                            return false;
                         }
                         thumblist.each(function () {
                             $(this).removeClass('zoomThumbActive');
@@ -208,19 +212,19 @@
             },
             deactivate: function (e) {
                 switch (settings.zoomType) {
-                case 'drag':
-                    //nothing or lens.setcenter();
-                    break;
-                default:
-                    img.attr('title', el.imagetitle);
-                    $(el).attr('title', el.title);
-                    if (settings.alwaysOn) {
-                        lens.setcenter();
-                    } else {
-                        stage.hide();
-                        lens.hide();
-                    }
-                    break;
+                    case 'drag':
+                        //nothing or lens.setcenter();
+                        break;
+                    default:
+                        img.attr('title', el.imagetitle);
+                        $(el).attr('title', el.title);
+                        if (settings.alwaysOn) {
+                            lens.setcenter();
+                        } else {
+                            stage.hide();
+                            lens.hide();
+                        }
+                        break;
                 }
                 el.zoom_active = false;
             },
@@ -251,7 +255,7 @@
             smallimage.fetchdata();
             if ($(".zoomPad", el).length == 0) obj.create();
         }
-/*========================================================,
+        /*========================================================,
 |   Smallimage
 |---------------------------------------------------------:
 |   Base image into the anchor element
@@ -315,7 +319,7 @@
             };
             return $obj;
         };
-/*========================================================,
+        /*========================================================,
 |  Loader
 |---------------------------------------------------------:
 |  Show that the large image is loading
@@ -343,7 +347,7 @@
             };
             return this;
         }
-/*========================================================,
+        /*========================================================,
 |   Lens
 |---------------------------------------------------------:
 |   Lens over the image
@@ -498,7 +502,7 @@
             };
             return this;
         };
-/*========================================================,
+        /*========================================================,
 |   Stage
 |---------------------------------------------------------:
 |   Window area that contains the large image
@@ -514,22 +518,22 @@
                 if (settings.zoomType != 'innerzoom') {
                     //positioning
                     switch (settings.position) {
-                    case "left":
-                        this.node.leftpos = (smallimage.pos.l - smallimage.bleft - Math.abs(settings.xOffset) - settings.zoomWidth > 0) ? (0 - settings.zoomWidth - Math.abs(settings.xOffset)) : (smallimage.ow + Math.abs(settings.xOffset));
-                        this.node.toppos = Math.abs(settings.yOffset);
-                        break;
-                    case "top":
-                        this.node.leftpos = Math.abs(settings.xOffset);
-                        this.node.toppos = (smallimage.pos.t - smallimage.btop - Math.abs(settings.yOffset) - settings.zoomHeight > 0) ? (0 - settings.zoomHeight - Math.abs(settings.yOffset)) : (smallimage.oh + Math.abs(settings.yOffset));
-                        break;
-                    case "bottom":
-                        this.node.leftpos = Math.abs(settings.xOffset);
-                        this.node.toppos = (smallimage.pos.t - smallimage.btop + smallimage.oh + Math.abs(settings.yOffset) + settings.zoomHeight < screen.height) ? (smallimage.oh + Math.abs(settings.yOffset)) : (0 - settings.zoomHeight - Math.abs(settings.yOffset));
-                        break;
-                    default:
-                        this.node.leftpos = (smallimage.rightlimit + Math.abs(settings.xOffset) + settings.zoomWidth < screen.width) ? (smallimage.ow + Math.abs(settings.xOffset)) : (0 - settings.zoomWidth - Math.abs(settings.xOffset));
-                        this.node.toppos = Math.abs(settings.yOffset);
-                        break;
+                        case "left":
+                            this.node.leftpos = (smallimage.pos.l - smallimage.bleft - Math.abs(settings.xOffset) - settings.zoomWidth > 0) ? (0 - settings.zoomWidth - Math.abs(settings.xOffset)) : (smallimage.ow + Math.abs(settings.xOffset));
+                            this.node.toppos = Math.abs(settings.yOffset);
+                            break;
+                        case "top":
+                            this.node.leftpos = Math.abs(settings.xOffset);
+                            this.node.toppos = (smallimage.pos.t - smallimage.btop - Math.abs(settings.yOffset) - settings.zoomHeight > 0) ? (0 - settings.zoomHeight - Math.abs(settings.yOffset)) : (smallimage.oh + Math.abs(settings.yOffset));
+                            break;
+                        case "bottom":
+                            this.node.leftpos = Math.abs(settings.xOffset);
+                            this.node.toppos = (smallimage.pos.t - smallimage.btop + smallimage.oh + Math.abs(settings.yOffset) + settings.zoomHeight < screen.height) ? (smallimage.oh + Math.abs(settings.yOffset)) : (0 - settings.zoomHeight - Math.abs(settings.yOffset));
+                            break;
+                        default:
+                            this.node.leftpos = (smallimage.rightlimit + Math.abs(settings.xOffset) + settings.zoomWidth < screen.width) ? (smallimage.ow + Math.abs(settings.xOffset)) : (0 - settings.zoomWidth - Math.abs(settings.xOffset));
+                            this.node.toppos = Math.abs(settings.yOffset);
+                            break;
                     }
                 }
                 this.node.css({
@@ -555,19 +559,19 @@
                     });    
                 }
                 
-                  $('.zoomWrapper', this.node).css({
-                      width: Math.round(settings.zoomWidth) + 'px' ,
-                      borderWidth: thickness + 'px'
-                  });
-                  $('.zoomWrapperImage', this.node).css({
-                      width: '100%',
-                      height: Math.round(settings.zoomHeight) + 'px'
-                  });
-                  //zoom title
-                 $('.zoomWrapperTitle', this.node).css({
-                        width: '100%',
-                        position: 'absolute'
-                  });  
+                $('.zoomWrapper', this.node).css({
+                    width: Math.round(settings.zoomWidth) + 'px' ,
+                    borderWidth: thickness + 'px'
+                });
+                $('.zoomWrapperImage', this.node).css({
+                    width: '100%',
+                    height: Math.round(settings.zoomHeight) + 'px'
+                });
+                //zoom title
+                $('.zoomWrapperTitle', this.node).css({
+                    width: '100%',
+                    position: 'absolute'
+                });  
               
                 $('.zoomWrapperTitle', this.node).hide();
                 if (settings.title && zoomtitle.length > 0) {
@@ -577,24 +581,24 @@
             };
             this.hide = function () {
                 switch (settings.hideEffect) {
-                case 'fadeout':
-                    this.node.fadeOut(settings.fadeoutSpeed, function () {});
-                    break;
-                default:
-                    this.node.hide();
-                    break;
+                    case 'fadeout':
+                        this.node.fadeOut(settings.fadeoutSpeed, function () {});
+                        break;
+                    default:
+                        this.node.hide();
+                        break;
                 }
                 this.ieframe.hide();
             };
             this.show = function () {
                 switch (settings.showEffect) {
-                case 'fadein':
-                    this.node.fadeIn();
-                    this.node.fadeIn(settings.fadeinSpeed, function () {});
-                    break;
-                default:
-                    this.node.show();
-                    break;
+                    case 'fadein':
+                        this.node.fadeIn();
+                        this.node.fadeIn(settings.fadeinSpeed, function () {});
+                        break;
+                    default:
+                        this.node.show();
+                        break;
                 }
                 if (isIE6 && settings.zoomType != 'innerzoom') {
                     this.ieframe.width = this.node.width();
@@ -615,7 +619,7 @@
                 };
             };
         };
-/*========================================================,
+        /*========================================================,
 |   LargeImage
 |---------------------------------------------------------:
 |   The large detailed image

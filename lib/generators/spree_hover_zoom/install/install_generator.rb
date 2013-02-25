@@ -3,7 +3,7 @@ module SpreeHoverZoom
     class InstallGenerator < Rails::Generators::Base
 
       def add_javascripts
-        append_file 'app/assets/javascripts/store/all.js', "//= require store/jqzoom_ev-2.3\n"
+        append_file 'app/assets/javascripts/store/all.js', "//= require store/jqzoom_ev-2.3/js/jquery.jqzoom-core\n"
         #append_file 'app/assets/javascripts/admin/all.js', "//= require admin/spree_hover_zoom\n"
       end
 
