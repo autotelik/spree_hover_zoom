@@ -3,7 +3,7 @@ module SpreeHoverZoom
     class InstallGenerator < Rails::Generators::Base
 
       def add_javascripts
-        append_file 'app/assets/javascripts/store/all.js', "//= require store/easyqzoom.js\n"
+        append_file 'app/assets/javascripts/store/all.js', "//= require store/easyzoom.js\n"
       end
 
       def add_stylesheets
