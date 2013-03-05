@@ -28,7 +28,8 @@
 			parent: 'body',
 			append: true,
 			preload: 'Loading...',
-			error: 'There has been a problem with loading the image.'
+			error: 'There has been a problem with loading the image.',
+                        cursor: 'crosshair'
 		}; 
 		
 		var obj;
@@ -41,6 +42,8 @@
 		
 		var options = $.extend(defaults, options);  
 		
+               // alert(options.width);
+                
 		this.each(function(){ 
 				
 			obj = this;	
@@ -57,7 +60,7 @@
 				};	
 				
 				$(this)
-					.css('cursor','crosshair')
+					.css('cursor', options.cursor)
 					.click(function(e){ e.preventDefault(); })
 					.mouseover(function(e){ start(e); })
 					.mouseout(function(){ hide(); })		
@@ -92,7 +95,7 @@
 		
 		function show(e){
 			over = true;
-			$(img).css({'position':'absolute','top':'0','left':'0'});
+			$(img).css( options.css);
 			$('#'+ options.id).html('').append(img);			
 			w1 = $('img', obj).width();
 			h1 = $('img', obj).height();

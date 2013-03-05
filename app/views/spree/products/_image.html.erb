@@ -13,8 +13,12 @@
 <% end %>
 
 
-<script type="text/javascript">  
+<script type="text/javascript"> 
+  
+  <!-- cursor -->
   jQuery(function($){ 
-    $('a.zoom').easyZoom();
+    $('a.zoom').easyZoom({
+        css: {'position':'absolute','top':'20','left':'700'}
+      });
   });
 </script>
