@@ -18,5 +18,10 @@ module SpreeHoverZoom
     end
 
     config.to_prepare &method(:activate).to_proc
+    
+     initializer "spree.hover_zoom.preferences", :after => "spree.environment" do |app|
+      SpreeHoverZoom::Config = Spree::HoverZoomConfiguration.new 
+    end
+    
   end
 end

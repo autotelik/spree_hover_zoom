@@ -2,6 +2,7 @@
   <a class="zoom" href="<%= image.attachment.url(:large)-%>" title="<%= @product.name %>">
     <%= image_tag image.attachment.url(:product), :itemprop => "image" %>
   </a>
+  <div id="zoom_icon"> <%= image_tag("/assetsZoom.png", :class => 'zoom_icon') %><p>Hover to zoom.</p></div>
 <% else %>
   <% if(@product.images.empty?) %>
     <%= product_image(@product, :itemprop => "image") %>
@@ -9,16 +10,19 @@
     <a class="zoom" href="<%= @product.images.first.attachment.url(:large)-%>" title="<%= @product.name %>" >
       <%= product_image(@product, :itemprop => "image") %>
     </a>
+    <div id="zoom_icon"> <%= image_tag("/assets/Zoom.png", :class => 'zoom_icon') %><p>Hover to zoom.</p></div>
   <% end %>
 <% end %>
 
 
 <script type="text/javascript"> 
   
-  <!-- cursor -->
+  <!-- Syntax : css({"propertyname":"value","propertyname":"value",...}); -->
+
+<% if %>
   jQuery(function($){ 
     $('a.zoom').easyZoom({
-        css: {'position':'absolute','top':'20','left':'700'}
-      });
+      css: {'position':'absolute', 'top': '70px', 'left':'740px'}
+    });
   });
 </script>

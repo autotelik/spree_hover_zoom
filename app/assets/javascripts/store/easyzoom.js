@@ -72,6 +72,10 @@
 		function start(e){
 			hide();			
 			var zoom = $('<div id="'+ options.id +'">'+ options.preload +'</div>');
+                        
+                        if(options.css) {
+                            zoom.css(options.css);
+                        }
 			if(options.append) { zoom.appendTo(options.parent) } else { zoom.prependTo(options.parent) };
 			if(!found){
 				error();
@@ -95,8 +99,8 @@
 		
 		function show(e){
 			over = true;
-			$(img).css( options.css);
-			$('#'+ options.id).html('').append(img);			
+			$(img).css({'position':'absolute','top':'0','left':'0'});
+			$('#'+ options.id).html('').append(img);	
 			w1 = $('img', obj).width();
 			h1 = $('img', obj).height();
 			w2 = $('#'+ options.id).width();
