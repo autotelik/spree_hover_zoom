@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.7'
 
   s.author    = 'Thomas Statter'
-  s.email     = 'opensourceyou@autotelik.co.uk'
+  s.email     = 'opensource@autotelik.co.uk'
   s.homepage  = 'http://www.github.com/autotelik'
 
   #s.files       = `git ls-files`.split("\n")
@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  #s.add_dependency 'spree_core', '2-1-stable'
+  s.add_dependency 'spree_core', '2-1-stable'
 end
