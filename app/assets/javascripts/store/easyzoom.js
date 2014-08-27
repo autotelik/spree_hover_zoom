@@ -28,7 +28,8 @@
 			parent: 'body',
 			append: true,
 			preload: 'Loading...',
-			error: 'There has been a problem with loading the image.'
+			error: 'There has been a problem with loading the image.',
+                        cursor: 'crosshair'
 		}; 
 		
 		var obj;
@@ -41,6 +42,8 @@
 		
 		var options = $.extend(defaults, options);  
 		
+               // alert(options.width);
+                
 		this.each(function(){ 
 				
 			obj = this;	
@@ -57,7 +60,7 @@
 				};	
 				
 				$(this)
-					.css('cursor','crosshair')
+					.css('cursor', options.cursor)
 					.click(function(e){ e.preventDefault(); })
 					.mouseover(function(e){ start(e); })
 					.mouseout(function(){ hide(); })		
@@ -69,6 +72,10 @@
 		function start(e){
 			hide();			
 			var zoom = $('<div id="'+ options.id +'">'+ options.preload +'</div>');
+                        
+                        if(options.css) {
+                            zoom.css(options.css);
+                        }
 			if(options.append) { zoom.appendTo(options.parent) } else { zoom.prependTo(options.parent) };
 			if(!found){
 				error();
@@ -93,7 +100,7 @@
 		function show(e){
 			over = true;
 			$(img).css({'position':'absolute','top':'0','left':'0'});
-			$('#'+ options.id).html('').append(img);			
+			$('#'+ options.id).html('').append(img);	
 			w1 = $('img', obj).width();
 			h1 = $('img', obj).height();
 			w2 = $('#'+ options.id).width();
