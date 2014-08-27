@@ -1,12 +1,4 @@
-<% if image %> 
 
-  <a class="zoom" href="<%= image.attachment.url(:large)-%>" title="<%= @product.name %>">
-    <%= image_tag image.attachment.url(:product), :itemprop => "image" %>
-  </a>
-
-  <div id="zoom_icon"> <%= image_tag("/assetsZoom.png", :class => 'zoom_icon') %><p>Hover to zoom.</p></div>
-  
-<% else %>
   
   <% if(@product.images.empty?) %>
     <%= product_image(@product, :itemprop => "image") %>
@@ -17,7 +9,6 @@
     <div id="zoom_icon"> <%= image_tag("/assets/Zoom.png", :class => 'zoom_icon') %><p>Hover to zoom.</p></div>
   <% end %>
     
-<% end %>
 
 <script type="text/javascript"> 
 <!-- Syntax : css({"propertyname":"value","propertyname":"value",...}); -->
